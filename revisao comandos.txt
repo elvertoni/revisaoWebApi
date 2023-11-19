@@ -1,0 +1,84 @@
+1 - Criar uma pasta
+2 - Abrir com cmd
+3 - dotnet new sln -n (nome solucao)
+4 - dotnet new webapi -n (nome do projeto) -f net6.0
+5 - dotnet sln add (nome do projeto)
+6 - cd (nome do projeto)
+7 - dotnet watch run
+8 - dotnet restore
+
+Instalar
+9 - EFCore.Sqlite
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 6.0.25
+
+10 - EFCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.25
+
+11 - Ferramenta de gerenciamento do Entity Framework
+dotnet tool install --global dotnet-ef --version 6.0.25
+
+12 - Crio uma pasta Models dentro do projeto
+
+13 - Dentro da pasta Models crio uma class Humano.cs
+
+Obs.: dotnet new --install Vio.Dotnet.Templates
+
+14 - Na classe Humano.cs digito props e coloco os atributos
+{ 
+public int HumanoId {get; set;}
+public string Nome {get; set;}
+public int idade {get; set;}
+}
+
+15 - Crio uma pasta chamada Data
+
+16 - Dentro da pasta Data crio uma class chamada AppDataContext.cs
+using Microsoft.EntityFrameworkCore;
+using revisaoProjeto.Models;
+
+namespace revisaoProjeto.Data;
+public class AppDataContext : DbContext
+{
+    public AppDataContext(DbContextOptions<AppDataContext> options) : base(options) { }
+    
+    //cada classe que quero que vire uma tabela no banco coloco aqui
+    public DbSet<Humano> Humanos {get; set;}
+}
+
+17 - Na classe Program.cs insiro a string de conexão e coloco o nome que quero no banco:
+
+Insiro os using
+using Microsoft.EntityFrameworkCore;
+using revisaoProjeto.Data;
+
+builder.Services.AddDbContext<AppDataContext>(options => options.UseSqlite("Data Source = revisao.db; Cache = shared"));
+
+18 - Adicionar uma nova migração
+dotnet ef migrations add NomeMigracao
+​
+19 - Atualizar o banco de dados conforme a última migração
+dotnet ef database update
+
+20 - Utilizo o DB Browser para ver se deu certo
+
+21 - Crio a classe Controller HumanoController.cs
+
+22 - Crio um arquivo sem template humano.http e faço as requisições de teste
+
+### ANGULAR ###
+
+1 - instalar se não tiver instalado
+npm install -g @angular/cli)
+
+2 - dentro da pasta onde está o projeto e a solução
+ng new front --minimal
+escolho css e N
+
+3 - Corrigir o arquivo angular.json
+"schematics": {
+        "@schematics/angular:component": {
+          "inlineTemplate": false,
+          "inlineStyle": false,
+          "skipTests": true
+
+

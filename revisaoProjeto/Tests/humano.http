@@ -1,0 +1,11 @@
+### Listar Humanos
+GET https://localhost:7219/api/humano/listar
+
+### Cadastrar produtos
+POST https://localhost:7219/api/humano/cadastrar 
+Content-Type: application/json
+
+{
+    "nome": "Jose",
+    "idade": 5
+}
